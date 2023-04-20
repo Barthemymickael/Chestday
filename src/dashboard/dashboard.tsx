@@ -43,12 +43,19 @@ export function Dashboard() {
 
     const [newFriendName, setNewFriendName] = useState<string>('');
     const [filter, setFilter] = useState<string>('Toutes');
+    const [showPopup, setShowPopup] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleAddFriend = () => {
         if (newFriendName !== '') {
             const newFriend = { id: friends.length + 1, name: newFriendName };
             setFriends([...friends, newFriend]);
             setNewFriendName('');
+            setIsSuccess(true);
+            setShowPopup(true);
+            setTimeout(() => {
+                setShowPopup(false);
+            }, 5000);
         }
     };
 
@@ -273,6 +280,11 @@ export function Dashboard() {
                     <button onClick={handleAddFriend} className='add-btn'>
                         ADD
                     </button>
+                    {showPopup && (
+                        <div className={isSuccess ? 'popup success' : 'popup error'}>
+                            {isSuccess ? 'Ami ajouté avec succès' : 'Erreur lors de l\'ajout de l\'ami'}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
