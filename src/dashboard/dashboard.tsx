@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './dashboard.css';
+import {IPartyCreateBody} from "../interfaces/party.interface";
 
 export function Dashboard() {
     const [friends, setFriends] = useState([
@@ -64,7 +65,7 @@ export function Dashboard() {
     };
 
     // fonction pour filtrer la liste des parties en fonction du filtre
-    const filterParties = (parties: any[], filter: string) => {
+    const filterParties = (parties: ({ id_creator: number; id_player: null; amount: number; nb_player: number; name: string; finish: boolean; id: number; type: string } | { id_creator: number; id_player: number; amount: number; nb_player: number; name: string; finish: boolean; id: number; type: string } | { id_creator: number; id_player: null; amount: number; nb_player: number; name: string; finish: boolean; id: number; type: string })[], filter: string) => {
         switch (filter) {
             case 'Payantes':
                 return parties.filter(party => party.amount !== 0);
