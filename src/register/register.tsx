@@ -1,8 +1,8 @@
-
 import {useState} from "react";
 
 
 function Register() {
+
 
 
     interface UserInterface {
@@ -38,9 +38,9 @@ function Register() {
 
     function submitNewUser(): void{
         validatePassword()
-        console.log("coucou");
+
         if(isPasswordsMatch && isPasswordValid && isEmailValid){
-            console.log("yes c'est dedans")
+
             const newUser : UserInterface = {
                 "username": pseudo,
                 "email": email,
