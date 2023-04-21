@@ -16,11 +16,26 @@ function Login() {
             body: JSON.stringify({"username": pseudo,"password":password })
         };
         fetch('http://localhost:8080/user/login', requestOptions)
-            .then(response => console.log(response.json()))
-
-
+            .then(response => response.json())
+            .then(data => {
+                isUserLogged(data)
+                // faire quelque chose avec le corps de la réponse
+            });
     }
 
+
+    function isUserLogged(response: any){
+        const code = response.status
+        console.log(response._id)
+        if(code === 200){
+            localStorage.setItem("userId", response._id)
+            //localStorage.setItem("jeton", response._id)
+
+            //changer de page
+        }else if(code === 400) {
+            localStorage.setItem("key", "value")
+        }
+    }
 
     const flexForm = {
         display: "flex",
